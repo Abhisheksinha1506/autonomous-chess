@@ -32,6 +32,7 @@ R N B Q K B . R
 ```
 See [moves_log.md](moves_log.md) for the diary of moves.
 See [principles.md](principles.md) for the philosophy behind this project.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for a visual guide to how the system works.
 
 ---
 
