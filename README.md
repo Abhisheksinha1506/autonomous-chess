@@ -18,8 +18,18 @@ Every commit is a move. Every reset is a new game.
 ---
 
 ## Current Status
-Last move: **Nh7**
+Last move: **e4**
 
+```
+r n b q k N r .
+. p p p p p p .
+. . . . . . . n
+p . . . . . . .
+. . . . P P . .
+. . . . . . . .
+P P P P . . P P
+R N B Q K B . R
+```
 See [moves_log.md](moves_log.md) for the diary of moves.
 See [principles.md](principles.md) for the philosophy behind this project.
 
@@ -34,5 +44,5 @@ Imagine two friends playing chess forever. They write down every move in a diary
 - **[board_state.json](board_state.json):** Current board position in chess notation (FEN).
 - **[moves_log.md](moves_log.md):** Human-readable diary of moves.
 - **[principles.md](principles.md):** Explains the rules and philosophy.
-- **.github/workflows/chess.yml:** Automation script that makes the repo play itself.
-- **scripts/play_move.py:** Logic for choosing moves and updating the board.
+- **[.github/workflows/chess.yml](.github/workflows/chess.yml):** Automation script that makes the repo play itself.
+- **[scripts/play_move.py](scripts/play_move.py):** Logic for choosing moves and updating the board.
