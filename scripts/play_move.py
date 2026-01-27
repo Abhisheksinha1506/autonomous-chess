@@ -2,7 +2,10 @@ import chess
 import json
 import os
 import subprocess
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+
+# IST is UTC + 5:30
+IST = timezone(timedelta(hours=5, minutes=30))
 
 BOARD_FILE = "board_state.json"
 LOG_FILE = "moves_log.md"
@@ -25,12 +28,12 @@ def save_board(board):
         json.dump({"fen": board.fen()}, f)
 
 def start_new_game_log(board):
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    now = datetime.now(IST).strftime("%Y-%m-%d %H:%M IST")
     with open(LOG_FILE, "a") as f:
         f.write(f"\n---\n\n## New Game (Started: {now})\n")
 
 def log_move(move, board, reset=False, san_move=None):
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    now = datetime.now(IST).strftime("%Y-%m-%d %H:%M IST")
     with open(LOG_FILE, "a") as f:
         if reset:
             outcome = board.outcome()
