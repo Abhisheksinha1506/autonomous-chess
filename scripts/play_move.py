@@ -12,13 +12,22 @@ LOG_FILE = "moves_log.md"
 README_FILE = "README.md"
 
 def load_board():
+    """Loads the board from JSON and validates its state."""
     if os.path.exists(BOARD_FILE):
         try:
             with open(BOARD_FILE, "r") as f:
                 data = json.load(f)
                 fen = data.get("fen")
-                return chess.Board(fen)
-        except Exception:
+                board = chess.Board(fen)
+                
+                # Safety Guard: Validate if the FEN is a legally reachable/valid position
+                if board.is_valid():
+                    return board
+                else:
+                    log_system_event("⚠️ Invalid FEN detected. Resetting to standard setup.")
+                    return chess.Board()
+        except Exception as e:
+            log_system_event(f"⚠️ Board load failed: {str(e)}. Resetting state.")
             return chess.Board()
     else:
         return chess.Board()
@@ -28,11 +37,14 @@ def save_board(board):
         json.dump({"fen": board.fen()}, f)
 
 def get_visual_board(board):
-    # Mirror the board for white/black? No, standard view is fine.
-    # Replace pieces with emojis for more "visual" feel?
-    # Actually ASCII is safer for compatibility, but let's try a mix.
     board_str = str(board)
     return f"```\n{board_str}\n```"
+
+def log_system_event(message):
+    """Logs internal system errors or state changes to the diary."""
+    now = datetime.now(IST).strftime("%Y-%m-%d %H:%M IST")
+    entry = f"\n### {now}\n**SYSTEM EVENT**\n\n{message}\n\n---\n"
+    update_log(entry)
 
 def update_log(new_entry):
     if not os.path.exists(LOG_FILE):
@@ -80,15 +92,11 @@ def generate_commentary(board, move):
     piece_name = chess.piece_name(piece.piece_type).capitalize() if piece else "A piece"
     target_square = chess.square_name(move.to_square)
     
-    commentary = ""
     if board.is_capture(move):
-        commentary = f"{piece_name} captures on {target_square}."
+        return f"{piece_name} captures on {target_square}."
     elif board.is_check():
-        commentary = f"{piece_name} moves to {target_square}, putting the opponent in check!"
-    else:
-        commentary = f"{piece_name} moves to {target_square}."
-    
-    return commentary
+        return f"{piece_name} moves to {target_square}, putting the opponent in check!"
+    return f"{piece_name} moves to {target_square}."
 
 def update_readme(board, san_move=None, reset=False):
     if reset:
@@ -129,34 +137,46 @@ def update_readme(board, san_move=None, reset=False):
         f.writelines(new_lines)
 
 def main():
-    board = load_board()
+    try:
+        board = load_board()
 
-    if board.is_game_over():
-        log_move(None, board, reset=True)
-        board.reset()
+        # Check for Game Over (Checkmate, Stalemate, Insufficient Material, etc.)
+        if board.is_game_over():
+            log_move(None, board, reset=True)
+            board.reset()
+            save_board(board)
+            start_new_game_log(board)
+            update_readme(board, reset=True)
+            return
+
+        legal_moves = list(board.legal_moves)
+        
+        # Safety Guard: If somehow there are no moves but not game over, force reset
+        if not legal_moves:
+            log_system_event("⚠️ No legal moves found in a non-terminal state. Forcing reset.")
+            board.reset()
+            save_board(board)
+            start_new_game_log(board)
+            update_readme(board, reset=True)
+            return
+
+        # Play a random move from the list of verified legal moves
+        move = random.choice(legal_moves)
+        san_move = board.san(move)
+        commentary = generate_commentary(board, move)
+        
+        board.push(move)
         save_board(board)
-        start_new_game_log(board)
-        update_readme(board, reset=True)
-        return
+        log_move(move, board, san_move=san_move, commentary=commentary)
+        update_readme(board, san_move=san_move)
+        print(f"Played move: {san_move}")
 
-    legal_moves = list(board.legal_moves)
-    if not legal_moves:
-        log_move(None, board, reset=True)
-        board.reset()
+    except Exception as e:
+        log_system_event(f"❌ Critical Error during move execution: {str(e)}")
+        # Attempt to recover by resetting board
+        board = chess.Board()
         save_board(board)
-        start_new_game_log(board)
         update_readme(board, reset=True)
-        return
-
-    move = random.choice(legal_moves)
-    san_move = board.san(move)
-    commentary = generate_commentary(board, move)
-    
-    board.push(move)
-    save_board(board)
-    log_move(move, board, san_move=san_move, commentary=commentary)
-    update_readme(board, san_move=san_move)
-    print(f"Played move: {san_move}")
 
 if __name__ == "__main__":
     main()
