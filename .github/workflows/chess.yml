@@ -5,6 +5,10 @@ on:
     - cron: "*/15 * * * *"   # Runs every 15 minutes (fast mode)
   workflow_dispatch:
 
+concurrency:
+  group: chess-simulation
+  cancel-in-progress: false
+
 jobs:
   play-chess:
     runs-on: ubuntu-latest
