@@ -2,7 +2,7 @@ name: Chess Simulation
 
 on:
   schedule:
-    - cron: "0 * * * *"   # Runs every hour
+    - cron: "0 */12 * * *"   # Runs every 12 hours (reduced frequency)
   push:
     branches:
       - main
