@@ -33,3 +33,7 @@ Games never end—when one side wins, the board resets and a new game begins.
 ### 2026-01-27 21:16 IST
 **Nxf8**
 📝 Commentary: Knight captures on f8.
+
+### 2026-01-27 21:18 IST
+**Rg8**
+📝 Commentary: Rook moves to g8.
