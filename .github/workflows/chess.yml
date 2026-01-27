@@ -3,9 +3,6 @@ name: Chess Simulation
 on:
   schedule:
     - cron: "*/15 * * * *"   # Runs every 15 minutes (fast mode)
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
