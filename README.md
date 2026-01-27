@@ -1,7 +1,7 @@
 # Autonomous Chess Repository ♟️
 
-[![Chess Simulation](https://img.shields.io/badge/Chess-Simulation-blue?style=flat-square)](#)
-[![Status](https://img.shields.io/badge/Status-Ongoing-green?style=flat-square)](#)
+[![Chess Simulation](https://github.com/Abhisheksinha1506/autonomous-chess/actions/workflows/chess.yml/badge.svg)](https://github.com/Abhisheksinha1506/autonomous-chess/actions/workflows/chess.yml)
+[![Status](https://img.shields.io/badge/Status-Ongoing-green?style=flat-square)](https://github.com/Abhisheksinha1506/autonomous-chess/actions/workflows/chess.yml)
 
 This repository is a living chessboard. It plays chess by itself, forever.
 Every commit is a move. Every reset is a new game.
