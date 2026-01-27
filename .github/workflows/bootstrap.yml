@@ -34,7 +34,8 @@ jobs:
           python scripts/play_move.py
           git add .
           git commit -m "♟️ Move 2: Response"
-          git push
+          git pull --rebase origin main
+          git push origin main
 
       - name: Trigger Chess Simulation Workflow
         env:
