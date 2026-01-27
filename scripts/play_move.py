@@ -33,8 +33,11 @@ def load_board():
         return chess.Board()
 
 def save_board(board):
-    with open(BOARD_FILE, "w") as f:
+    """Saves the board state atomically to prevent corruption."""
+    temp_file = f"{BOARD_FILE}.tmp"
+    with open(temp_file, "w") as f:
         json.dump({"fen": board.fen()}, f)
+    os.replace(temp_file, BOARD_FILE)
 
 def get_visual_board(board):
     board_str = str(board)
@@ -47,6 +50,8 @@ def log_system_event(message):
     update_log(entry)
 
 def update_log(new_entry):
+    """Appends to the log file atomically."""
+    temp_file = f"{LOG_FILE}.tmp"
     if not os.path.exists(LOG_FILE):
         header = "# ChessBot Move Log ♟️\n\nThis file is the diary of the autonomous chess games played by ChessBot.\nEach entry records the move, the time, and a short commentary.\nGames never end—when one side wins, the board resets and a new game begins.\n\n---\n"
         content = ""
@@ -67,10 +72,11 @@ def update_log(new_entry):
             header = "".join(lines[:header_end])
             content = "".join(lines[header_end:])
 
-    with open(LOG_FILE, "w") as f:
+    with open(temp_file, "w") as f:
         f.write(header)
         f.write(new_entry)
         f.write(content)
+    os.replace(temp_file, LOG_FILE)
 
 def start_new_game_log(board):
     now = datetime.now(IST).strftime("%Y-%m-%d %H:%M IST")
@@ -99,6 +105,8 @@ def generate_commentary(board, move):
     return f"{piece_name} moves to {target_square}."
 
 def update_readme(board, san_move=None, reset=False):
+    """Updates the README atomically."""
+    temp_file = f"{README_FILE}.tmp"
     if reset:
         status = "♟️ Game reset – new match started."
     elif san_move:
@@ -133,8 +141,9 @@ def update_readme(board, san_move=None, reset=False):
         new_lines.append("\n## Current Status\n")
         new_lines.append(f"{status}\n\n{get_visual_board(board)}\n")
 
-    with open(README_FILE, "w") as f:
+    with open(temp_file, "w") as f:
         f.writelines(new_lines)
+    os.replace(temp_file, README_FILE)
 
 def main():
     try:

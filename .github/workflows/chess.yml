@@ -10,26 +10,33 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install dependencies
         run: pip install python-chess
 
+      - name: Run Integrity Health Check
+        run: python scripts/health_check.py
+
       - name: Play next move
-        run: python scripts/play_move.py
+        id: play_move
+        run: |
+          python scripts/play_move.py 2> error.log || (echo "FAILED=true" >> $GITHUB_ENV && exit 1)
 
       - name: Commit changes
+        if: env.FAILED != 'true'
         run: |
           git config --global user.name "ChessBot"
           git config --global user.email "chessbot@example.com"
-          git add board_state.json moves_log.md README.md
+          git add board_state.json moves_log.md README.md principles.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
@@ -37,3 +44,13 @@ jobs:
             git pull --rebase origin main
             git push origin main
           fi
+
+      - name: Report failure as Issue
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "⚠️ Autonomous Chess Simulation Failure"
+          content-filepath: error.log
+          labels: |
+            bug
+            automated-report
