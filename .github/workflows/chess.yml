@@ -1,0 +1,41 @@
+name: Chess Simulation
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # Runs every hour
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  play-chess:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install python-chess
+
+      - name: Play next move
+        run: python scripts/play_move.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "ChessBot"
+          git config --global user.email "chessbot@example.com"
+          git add board_state.json moves_log.md README.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "♟️ ChessBot Move"
+            git push
+          fi

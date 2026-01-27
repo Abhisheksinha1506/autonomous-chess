@@ -1,0 +1,43 @@
+name: Chess Simulation Bootstrap
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install python-chess
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "ChessBot"
+          git config --global user.email "chessbot@example.com"
+
+      - name: Play first few moves
+        run: |
+          python scripts/play_move.py
+          git add .
+          git commit -m "♟️ Move 1: Opening"
+          python scripts/play_move.py
+          git add .
+          git commit -m "♟️ Move 2: Response"
+          git push
+
+      - name: Trigger Chess Simulation Workflow
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run chess.yml
