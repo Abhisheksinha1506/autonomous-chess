@@ -18,15 +18,15 @@ Every commit is a move. Every reset is a new game.
 ---
 
 ## Current Status
-Last move: **Ka6**
+Last move: **Kh3**
 
 ```
 . . . r . . . .
 . . . . . . . .
 k . . . p . . .
 . n . . P . . .
-. . . . n . K .
-. . . . . . . .
+. . . . n . . .
+. . . . . . . K
 . . . . . . . .
 . . . . . . . .
 ```
