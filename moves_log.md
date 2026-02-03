@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-02-04 05:29 IST
+**Move: Kg5**
+
+```
+. . . k . . . .
+. . . . . . . .
+. . . . p . . .
+. n . . P . K .
+. . . . . . n .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+```
+
+📝 Commentary: King moves to g5.
+
+---
+
 ### 2026-02-04 05:12 IST
 **Move: Ng4**
 
