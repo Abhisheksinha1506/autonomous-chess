@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-02-25 13:10 IST
+**Move: d5**
+
+```
+r n b . k b n r
+p p q . p . p .
+. . p . . . . p
+. . . p . p . .
+. P . . . P . P
+. . . . P . P .
+P . P P . . . .
+R N B Q K B N R
+```
+
+📝 Commentary: Pawn moves to d5.
+
+---
+
 ### 2026-02-25 12:14 IST
 **Move: e3**
 
