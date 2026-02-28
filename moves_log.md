@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-02-28 20:52 IST
+**Move: Rc1**
+
+```
+. . . . . r . .
+p p . . . . n .
+n P . . . . . .
+. . . k p . . .
+P . p . . . . .
+. . P . . . p p
+. R . K . . . .
+. . R . . . . .
+```
+
+📝 Commentary: Rook moves to c1.
+
+---
+
 ### 2026-02-28 20:19 IST
 **Move: Rf8**
 
