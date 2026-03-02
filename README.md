@@ -18,7 +18,7 @@ Every commit is a move. Every reset is a new game.
 ---
 
 ## Current Status
-Last move: **Kc5**
+Last move: **Na3**
 
 ```
 . . . . . . . .
@@ -26,8 +26,8 @@ Last move: **Kc5**
 . . . . . . k .
 . . K . . . . .
 p . p . . . . .
-. . P . . . . .
-. . n n . . . p
+n . P . . . . .
+. . . n . . . p
 . . . . . . . .
 ```
 See [moves_log.md](moves_log.md) for the diary of moves.
