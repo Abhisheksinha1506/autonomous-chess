@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-03-08 09:49 IST
+**Move: c8=Q+**
+
+```
+. . Q . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . k . .
+. . . . . . . .
+. . K . . . . .
+. . . . . . n .
+. . . . . . . .
+```
+
+📝 Commentary: Pawn moves to c8.
+
+---
+
 ### 2026-03-08 07:36 IST
 **Move: Kf5**
 
