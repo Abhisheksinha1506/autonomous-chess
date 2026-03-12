@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-03-12 11:20 IST
+**Move: cxd5**
+
+```
+. r b k . . . .
+. . . . b . . .
+B p n . p . . r
+. . . P . p . .
+P q . . . P . P
+. P . . . . p .
+. R . . . . R .
+. . K . . . B Q
+```
+
+📝 Commentary: Pawn captures on d5.
+
+---
+
 ### 2026-03-12 10:16 IST
 **Move: Rb8**
 
