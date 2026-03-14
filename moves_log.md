@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-03-14 14:06 IST
+**Move: gxf1=R+**
+
+```
+. r . . . . . .
+. . . k . . . .
+. B . . . r . .
+. . . . p p . .
+. . . . b P . .
+. . . . . . . .
+. . . . . . . b
+n . . K . r . .
+```
+
+📝 Commentary: Pawn captures on f1.
+
+---
+
 ### 2026-03-14 13:20 IST
 **Move: Bf1**
 
