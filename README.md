@@ -18,7 +18,7 @@ Every commit is a move. Every reset is a new game.
 ---
 
 ## Current Status
-Last move: **Kb7**
+Last move: **Kc3**
 
 ```
 . . . . . . . .
@@ -26,7 +26,7 @@ Last move: **Kb7**
 . . . . . . . .
 . . . . . . . .
 r . . . . p . .
-b . . K . p . .
+b . K . . p . .
 . . . . . . b .
 . . . . . . . .
 ```
