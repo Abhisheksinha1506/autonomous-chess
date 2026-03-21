@@ -6,6 +6,24 @@ Games never end—when one side wins, the board resets and a new game begins.
 
 ---
 
+### 2026-03-21 07:29 IST
+**Move: Kc8**
+
+```
+. . K . . . . .
+. . . . . . . .
+. . . . . . . .
+. k . . . . . .
+. . . . . . . .
+. . . . . p . .
+. . . . . . b .
+. . . . . . . .
+```
+
+📝 Commentary: King moves to c8.
+
+---
+
 ### 2026-03-21 05:23 IST
 **Move: Bg2**
 
