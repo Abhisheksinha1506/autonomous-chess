@@ -18,7 +18,7 @@ Every commit is a move. Every reset is a new game.
 ---
 
 ## Current Status
-Last move: **hxg3**
+Last move: **Ra3**
 
 ```
 r . b . . . . .
@@ -26,7 +26,7 @@ r . b . . . . .
 p . . p p n k B
 . . p P . p r p
 P p P . . . . .
-. R . n P . p P
+R . . n P . p P
 . P . N K P . .
 . . . . Q B . R
 ```
